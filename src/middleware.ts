@@ -1,6 +1,6 @@
 /**
  * Next.js Middleware Configuration
- * ================================
+ * ==============================
  *
  * This middleware file handles core app logic, conditionally applying the
  * authentication and internationalization, based on environment variables.
@@ -99,7 +99,6 @@ export default async function middleware(
   const { nextUrl: geo } = request;
   // @ts-expect-error strange error
   const country = geo?.country || "US";
-  if (country === "RU") return new Response("", { status: 403 });
   if (locale) setCookie("NEXT_LOCALE", locale);
   if (authProvider === "clerk") {
     return withClerk({
