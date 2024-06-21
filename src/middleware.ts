@@ -99,6 +99,7 @@ export default async function middleware(
   const { nextUrl: geo } = request;
   // @ts-expect-error strange error
   const country = geo?.country || "US";
+  if (country === "ZZ") return new Response("", { status: 403 });
   if (locale) setCookie("NEXT_LOCALE", locale);
   if (authProvider === "clerk") {
     return withClerk({
